@@ -27,11 +27,6 @@ const Skills = () => {
             id="skills"
             className="min-h-screen flex items-center py-20 px-4 sm:px-6 overflow-x-clip relative"
         >
-            <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-500/5 rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-500/5 rounded-full blur-3xl"></div>
-            </div>
-
             <div className="max-w-6xl mx-auto w-full relative z-10">
                 <div className="text-center mb-16" data-aos="fade-up">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-5">

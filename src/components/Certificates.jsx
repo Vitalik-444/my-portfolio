@@ -63,11 +63,6 @@ const Certificates = () => {
                     <div className='lg:w-2/5 w-full flex justify-center'
                          data-aos='fade-right'>
                         <div className='relative group'>
-                            <div className='absolute inset-0
-                            bg-linear-to-r from-red-600 to-red-800
-                            rounded-full filter blur-2xl opacity-30 group-hover:opacity-50
-                            transition-opacity duration-500' />
-
                             <div className='relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96'>
                                 <img
                                     src={certificateImg}
