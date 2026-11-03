@@ -61,18 +61,18 @@ A modern, responsive, animated personal portfolio with dark / light theme.
 
 <div align="center">
 
-<img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="72" height="72" />&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="72" height="72" />&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="72" height="72" />&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/framer/0055FF" alt="Framer Motion" width="72" height="72" />&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="72" height="72" />&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5" width="72" height="72" />&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS3" width="72" height="72" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="56" height="56" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="56" height="56" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="56" height="56" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/framer/0055FF" alt="Framer Motion" width="56" height="56" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="56" height="56" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5" width="56" height="56" />&nbsp;&nbsp;
+<img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS3" width="56" height="56" />&nbsp;&nbsp;
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/vercel/ffffff">
-  <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel" width="72" height="72" />
+  <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel" width="56" height="56" />
 </picture>&nbsp;&nbsp;
-<img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="72" height="72" />
+<img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="56" height="56" />
 
 </div>
 
