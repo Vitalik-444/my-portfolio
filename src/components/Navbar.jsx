@@ -59,7 +59,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                     backdrop-blur-xl rounded-2xl shadow-2xl border
                     border-white/20 px-3 py-2"
                 >
-                    <div className="absolute -top-5 right-3">
+                    <div className="absolute -top-5 right-3 z-20">
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
