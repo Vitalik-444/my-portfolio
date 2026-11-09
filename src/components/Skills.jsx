@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 
 const skills = [
-    { name: "React Js", percentage: 90, color: "#61DAFB" },
-    { name: "Tailwind CSS", percentage: 98, color: "#06B6D4" },
+    { name: "React Js", percentage: 95, color: "#61DAFB" },
+    { name: "Tailwind CSS", percentage: 90, color: "#06B6D4" },
     { name: "Vue Js", percentage: 80, color: "#4FC08D" },
-    { name: "Javascript", percentage: 75, color: "#F7DF1E" },
+    { name: "Javascript", percentage: 100, color: "#F7DF1E" },
 ];
 
 const Skills = () => {
-    // Rings fill up when the section scrolls into view
     const sectionRef = useRef(null)
     const [visible, setVisible] = useState(false)
 
