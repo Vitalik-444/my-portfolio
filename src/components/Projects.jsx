@@ -15,7 +15,7 @@ import aurel from "../assets/projects/aurel-watch.webp"
 import gta6 from "../assets/projects/gta6.webp"
 import obsidian from "../assets/projects/obsidian.webp"
 import { FaGithub } from "react-icons/fa"
-import verdant from "../assets/projects/verdant.webp"
+import verdant from "../assets/projects/verdent.webp"
 
 
 const projectsData = [
@@ -102,6 +102,15 @@ const projectsData = [
     },
     {
         id: 10,
+        image: verdant,
+        title: 'Verdant — Bali Eco Escape',
+        desc: 'Immersive travel landing page for a jungle retreat in Bali with a full-screen forest hero, bold typography and a booking call-to-action.',
+        github: 'https://github.com/Vitalik-444/tropical-web',
+        demo: 'https://tropical-web-omega.vercel.app/',
+        tags: ['React Js', 'Tailwind CSS', 'Javascript'],
+    },
+    {
+        id: 11,
         image: wildscape,
         title: 'WildScape — Safari Travel',
         desc: 'Luxury safari landing page with a full-screen hero slider, key stats and a booking call-to-action.',
@@ -110,7 +119,7 @@ const projectsData = [
         tags: ['React Js', 'Tailwind CSS', 'Javascript'],
     },
     {
-        id: 11,
+        id: 12,
         image: panto,
         title: 'Panto Furniture Landing',
         desc: 'Minimalist furniture landing page with a hero search bar, dropdown menu and a shopping cart icon.',
@@ -119,7 +128,7 @@ const projectsData = [
         tags: ['React Js', 'Tailwind CSS', 'Javascript'],
     },
     {
-        id: 12,
+        id: 13,
         image: cryptoTracker,
         title: 'Crypto Portfolio Tracker',
         desc: 'Track your crypto holdings: portfolio pie chart, sortable asset table, profit/loss and an asset picker.',
@@ -128,21 +137,12 @@ const projectsData = [
         tags: ['React Js', 'Tailwind CSS', 'Javascript'],
     },
     {
-        id: 13,
+        id: 14,
         image: profileCard,
         title: 'Profile Page',
         desc: 'Dark profile page with biography, interests, stats and tabs for About, Posts, Photos and Contact.',
         github: '#',
         demo: '#',
-        tags: ['React Js', 'Tailwind CSS', 'Javascript'],
-    },
-    {
-        id: 14,
-        image: verdant,
-        title: 'Verdant — Bali Eco Escape',
-        desc: 'Immersive travel landing page for a jungle retreat in Bali with a full-screen forest hero, bold typography and a booking call-to-action.',
-        github: 'https://github.com/Vitalik-444/tropical-web',
-        demo: 'https://tropical-web-omega.vercel.app/',
         tags: ['React Js', 'Tailwind CSS', 'Javascript'],
     },
 ]
