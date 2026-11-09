@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import {ChevronLeft, ChevronRight, ExternalLink, LayoutGrid, Rows3} from "lucide-react"
+import { createPortal } from "react-dom"
+import {ChevronLeft, ChevronRight, ExternalLink, LayoutGrid, Rows3, X, ZoomIn} from "lucide-react"
 import wildscape from "../assets/projects/wildscape.webp"
 import sylvaHearth from "../assets/projects/sylva-hearth.webp"
 import nordhome from "../assets/projects/nordhome.webp"
@@ -139,16 +140,20 @@ const projectsData = [
 // Three copies of the list make the slider loop endlessly
 const infiniteProjects = [...projectsData, ...projectsData, ...projectsData]
 
-const ProjectCard = ({ project, className = '' }) => (
+const ProjectCard = ({ project, onImageClick, className = '' }) => (
     <div
         className={`group rounded-3xl overflow-hidden border-2 transition-all duration-300
         dark:border-zinc-800/60 border-gray-100 dark:bg-zinc-900/40 bg-white
         hover:shadow-[0_20px_40px_rgba(220,38,38,0.15)] flex flex-col ${className}`}>
-        <div className='relative overflow-hidden aspect-video bg-gray-100 dark:bg-zinc-900'>
+        <button type='button' onClick={() => onImageClick(project)}
+                aria-label={`Open image: ${project.title}`}
+                className='relative overflow-hidden aspect-video bg-gray-100 dark:bg-zinc-900 block w-full cursor-zoom-in'>
             <img src={project.image} alt={project.title} loading='lazy'
                  className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'/>
-            <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-        </div>
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <ZoomIn size={32} className='text-white drop-shadow'/>
+            </div>
+        </button>
         <div className='p-6 flex flex-col justify-between grow min-h-50'>
             <div>
                 <h3 className="text-lg font-bold mb-2 dark:text-white text-gray-900 group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors duration-300">
@@ -188,8 +193,56 @@ const ProjectCard = ({ project, className = '' }) => (
     </div>
 )
 
+// Fullscreen image viewer (modal) with close button, Esc / backdrop close and prev/next navigation
+const ImageModal = ({ project, onClose, onNavigate }) => {
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key === 'Escape') onClose()
+            else if (e.key === 'ArrowLeft') onNavigate(-1)
+            else if (e.key === 'ArrowRight') onNavigate(1)
+        }
+        const prevOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+        window.addEventListener('keydown', onKey)
+        return () => {
+            document.body.style.overflow = prevOverflow
+            window.removeEventListener('keydown', onKey)
+        }
+    }, [onClose, onNavigate])
+
+    const arrowClass = 'absolute top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-red-500/80 transition-colors duration-300'
+
+    return createPortal(
+        <div role='dialog' aria-modal='true' aria-label={project.title}
+             onClick={onClose}
+             className='fixed inset-0 z-100 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 sm:p-10'>
+            <button type='button' onClick={onClose} aria-label='Close'
+                    className='absolute top-4 right-4 p-3 rounded-full bg-black/50 text-white hover:bg-red-500/80 transition-colors duration-300'>
+                <X size={22}/>
+            </button>
+            <button type='button' aria-label='Previous image'
+                    onClick={(e) => { e.stopPropagation(); onNavigate(-1) }}
+                    className={`${arrowClass} left-3 sm:left-6`}>
+                <ChevronLeft size={24}/>
+            </button>
+            <button type='button' aria-label='Next image'
+                    onClick={(e) => { e.stopPropagation(); onNavigate(1) }}
+                    className={`${arrowClass} right-3 sm:right-6`}>
+                <ChevronRight size={24}/>
+            </button>
+            <figure onClick={(e) => e.stopPropagation()}
+                    className='max-w-full max-h-full flex flex-col items-center gap-3'>
+                <img src={project.image} alt={project.title}
+                     className='max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl'/>
+                <figcaption className='text-white text-sm font-medium text-center'>{project.title}</figcaption>
+            </figure>
+        </div>,
+        document.body
+    )
+}
+
 // Endless horizontal slider with prev/next arrows
-const Slider = () => {
+const Slider = ({ onImageClick }) => {
     const scrollRef = useRef(null)
 
     // Width of one full set of projects (distance between the same card in two copies)
@@ -259,6 +312,7 @@ const Slider = () => {
                     <ProjectCard
                         key={`${project.id}-${index}`}
                         project={project}
+                        onImageClick={onImageClick}
                         className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start"
                     />
                 ))}
@@ -269,6 +323,18 @@ const Slider = () => {
 
 const Projects = () => {
     const [showAll, setShowAll] = useState(false)
+    const [activeId, setActiveId] = useState(null)
+
+    const activeProject = projectsData.find((p) => p.id === activeId) || null
+    const openImage = useCallback((project) => setActiveId(project.id), [])
+    const closeImage = useCallback(() => setActiveId(null), [])
+    const navigateImage = useCallback((dir) => {
+        setActiveId((id) => {
+            const i = projectsData.findIndex((p) => p.id === id)
+            if (i === -1) return id
+            return projectsData[(i + dir + projectsData.length) % projectsData.length].id
+        })
+    }, [])
 
     const toggleShowAll = () => {
         setShowAll((prev) => !prev)
@@ -300,13 +366,16 @@ const Projects = () => {
                 {showAll ? (
                     <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
                         {projectsData.map((project) => (
-                            <ProjectCard key={project.id} project={project}/>
+                            <ProjectCard key={project.id} project={project} onImageClick={openImage}/>
                         ))}
                     </div>
                 ) : (
-                    <Slider/>
+                    <Slider onImageClick={openImage}/>
                 )}
             </div>
+            {activeProject && (
+                <ImageModal project={activeProject} onClose={closeImage} onNavigate={navigateImage}/>
+            )}
         </section>
     )
 }
