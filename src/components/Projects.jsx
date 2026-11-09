@@ -15,8 +15,9 @@ import aurel from "../assets/projects/aurel-watch.webp"
 import gta6 from "../assets/projects/gta6.webp"
 import obsidian from "../assets/projects/obsidian.webp"
 import { FaGithub } from "react-icons/fa"
+import verdant from "../assets/projects/verdant.webp"
 
-// Order: projects with both GitHub + live demo first, then partial, then the rest
+
 const projectsData = [
     {
         id: 1,
@@ -135,9 +136,18 @@ const projectsData = [
         demo: '#',
         tags: ['React Js', 'Tailwind CSS', 'Javascript'],
     },
+    {
+        id: 14,
+        image: verdant,
+        title: 'Verdant — Bali Eco Escape',
+        desc: 'Immersive travel landing page for a jungle retreat in Bali with a full-screen forest hero, bold typography and a booking call-to-action.',
+        github: 'https://github.com/Vitalik-444/tropical-web',
+        demo: 'https://tropical-web-omega.vercel.app/',
+        tags: ['React Js', 'Tailwind CSS', 'Javascript'],
+    },
 ]
 
-// Three copies of the list make the slider loop endlessly
+
 const infiniteProjects = [...projectsData, ...projectsData, ...projectsData]
 
 const ProjectCard = ({ project, onImageClick, className = '' }) => (
@@ -193,7 +203,6 @@ const ProjectCard = ({ project, onImageClick, className = '' }) => (
     </div>
 )
 
-// Fullscreen image viewer (modal) with close button, Esc / backdrop close and prev/next navigation
 const ImageModal = ({ project, onClose, onNavigate }) => {
     useEffect(() => {
         const onKey = (e) => {
@@ -241,24 +250,20 @@ const ImageModal = ({ project, onClose, onNavigate }) => {
     )
 }
 
-// Endless horizontal slider with prev/next arrows
 const Slider = ({ onImageClick }) => {
     const scrollRef = useRef(null)
 
-    // Width of one full set of projects (distance between the same card in two copies)
     const getSetWidth = useCallback(() => {
         const el = scrollRef.current
         if (!el || el.children.length < projectsData.length * 2) return 0
         return el.children[projectsData.length].offsetLeft - el.children[0].offsetLeft
     }, [])
 
-    // Start in the middle copy so both directions have room to scroll
     useEffect(() => {
         const el = scrollRef.current
         if (el) el.scrollLeft = getSetWidth()
     }, [getSetWidth])
 
-    // Silently jump back into the middle copy when the edge copies are reached
     const handleScrollEnd = useCallback(() => {
         const el = scrollRef.current
         const setWidth = getSetWidth()
@@ -274,7 +279,6 @@ const Slider = ({ onImageClick }) => {
         const el = scrollRef.current
         if (!el) return
         let timer
-        // `scrollend` is not supported everywhere, so a debounced `scroll` is the fallback
         const onScroll = () => {
             clearTimeout(timer)
             timer = setTimeout(handleScrollEnd, 120)
@@ -289,7 +293,6 @@ const Slider = ({ onImageClick }) => {
     const handleScroll = (direction) => {
         const el = scrollRef.current
         if (!el || el.children.length < 2) return
-        // Scroll exactly one card (width + gap), so the cards never drift out of alignment
         const step = el.children[1].offsetLeft - el.children[0].offsetLeft
         el.scrollBy({ left: direction === 'left' ? -step : step, behavior: 'smooth' })
     }
@@ -338,7 +341,6 @@ const Projects = () => {
 
     const toggleShowAll = () => {
         setShowAll((prev) => !prev)
-        // Keep the section title in view after the layout switches
         document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
