@@ -34,10 +34,10 @@ const Certificates = () => {
         },
         {
             id: 2,
-            title: 'Frontend Development',
-            issuer: 'Meta',
-            date: '2025',
-            credential: '#'
+            title: 'TypeScript for Beginners: Code in the AI Era',
+            issuer: 'SoloLearn',
+            date: '2026',
+            credential: 'https://www.sololearn.com/certificates/CC-3XDLMBX6'
         },
         {
             id: 3,
