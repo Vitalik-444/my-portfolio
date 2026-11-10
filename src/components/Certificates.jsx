@@ -27,10 +27,10 @@ const Certificates = () => {
     const certificate = [
         {
             id: 1,
-            title: 'Frontend Development',
-            issuer: 'Meta',
-            date: '2024',
-            credential: '#'
+            title: 'Introduction to JavaScript',
+            issuer: 'SoloLearn',
+            date: '2026',
+            credential: 'https://www.sololearn.com/certificates/CC-TZUF7EAQ'
         },
         {
             id: 2,
@@ -124,18 +124,18 @@ const Certificates = () => {
                                                 </span>
                                             </div>
                                         </div>
-                                    <div className="flex items-center justify-between sm:flex-col sm:items-end gap-1.5 shrink-0 max-sm:border-t max-sm:border-gray-100/50 max-sm:dark:border-zinc-800/30 max-sm:pt-2">
-                                        <div className="flex items-center gap-1.5 text-xs font-mono text-gray-500 dark:text-zinc-400">
-                                            <Calendar size={13} />
-                                            <span>{cert.date}</span>
-                                        </div>
-                                        <a href={cert.credential} target='_blank'
-                                           rel='noopener noreferrer'
-                                           className='inline-flex items-center gap-1
+                                        <div className="flex items-center justify-between sm:flex-col sm:items-end gap-1.5 shrink-0 max-sm:border-t max-sm:border-gray-100/50 max-sm:dark:border-zinc-800/30 max-sm:pt-2">
+                                            <div className="flex items-center gap-1.5 text-xs font-mono text-gray-500 dark:text-zinc-400">
+                                                <Calendar size={13} />
+                                                <span>{cert.date}</span>
+                                            </div>
+                                            <a href={cert.credential} target='_blank'
+                                               rel='noopener noreferrer'
+                                               className='inline-flex items-center gap-1
                                         text-xs font-semibold text-green-600 dark:text-green-400 hover:underline '>
-                                            Verify <ExternalLink size={11}/>
-                                        </a>
-                                    </div>
+                                                Verify <ExternalLink size={11}/>
+                                            </a>
+                                        </div>
                                     </div>
                                 </motion.div>
                             ))}
